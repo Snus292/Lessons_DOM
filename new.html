@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>
+        function generateRandomNumber() {
+            return Math.floor(Math.random() * 100); // Генерируем случайное число от 0 до 99
+        }
+
+        function addRandomArticle() {
+            var randomNum = generateRandomNumber();
+            var colorClass = getColorClass(randomNum); // Получаем класс цвета
+            var innerEl = "<p class='article " + colorClass + "'>" + randomNum + "</p>";
+            $("#articles-container").append(innerEl);
+        }
+
+        function getColorClass(number) {
+            // Функция возвращает класс цвета в зависимости от последней цифры числа
+            var lastDigit = number % 10;
+            switch (lastDigit) {
+                case 0:
+                    return "color-red";
+                case 1:
+                    return "color-blue";
+                case 2:
+                    return "color-green";
+                // Добавьте другие случаи для других цифр и цветов
+                default:
+                    return ""; // По умолчанию никакой класс цвета не устанавливается
+            }
+        }
+
+        $(document).ready(function() {
+            // Добавляем анимацию для абзацев с классом "article"
+            $(".article").hide().fadeIn(1000);
+
+            // Добавляем сортировку для абзацев с классом "article"
+            $("#sort-button").click(function() {
+                var articles = $(".article");
+                articles.sort(function(a, b) {
+                    return parseInt($(a).text()) - parseInt($(b).text());
+                });
+                $("#articles-container").empty().append(articles);
+            });
+        });
+    </script>
+
+    <style>
+        .red {
+            color: red;
+        }
+
+        .blue {
+            color: blue;
+        }
+
+        .green {
+            color: green;
+        }
+
+        /* Добавьте другие классы цветов, если необходимо */
+    </style>
+</head>
+<body>
+    <button id="add-button" onclick="addRandomArticle()">Add Random Article</button>
+    <button id="sort-button">Sort</button>
+    
+    <div id="articles-container">
+        <!-- Начальные статьи могут быть пустыми -->
+    </div>
+
+    <select id="num"></select>
+</body>
+</html>
