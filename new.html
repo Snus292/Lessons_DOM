@@ -5,73 +5,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script>
-        function generateRandomNumber() {
-            return Math.floor(Math.random() * 100); // Генерируем случайное число от 0 до 99
-        }
-
-        function addRandomArticle() {
-            var randomNum = generateRandomNumber();
-            var colorClass = getColorClass(randomNum); // Получаем класс цвета
-            var innerEl = "<p class='article " + colorClass + "'>" + randomNum + "</p>";
-            $("#articles-container").append(innerEl);
-        }
-
-        function getColorClass(number) {
-            // Функция возвращает класс цвета в зависимости от последней цифры числа
-            var lastDigit = number % 10;
-            switch (lastDigit) {
-                case 0:
-                    return "color-red";
-                case 1:
-                    return "color-blue";
-                case 2:
-                    return "color-green";
-                // Добавьте другие случаи для других цифр и цветов
-                default:
-                    return ""; // По умолчанию никакой класс цвета не устанавливается
-            }
-        }
-
-        $(document).ready(function() {
-            // Добавляем анимацию для абзацев с классом "article"
-            $(".article").hide().fadeIn(1000);
-
-            // Добавляем сортировку для абзацев с классом "article"
-            $("#sort-button").click(function() {
-                var articles = $(".article");
-                articles.sort(function(a, b) {
-                    return parseInt($(a).text()) - parseInt($(b).text());
-                });
-                $("#articles-container").empty().append(articles);
-            });
-        });
-    </script>
-
-    <style>
-        .red {
-            color: red;
-        }
-
-        .blue {
-            color: blue;
-        }
-
-        .green {
-            color: green;
-        }
-
-        /* Добавьте другие классы цветов, если необходимо */
-    </style>
+    <link rel="stylesheet" href="/Lessons_DOM/new.css">
 </head>
 <body>
-    <button id="add-button" onclick="addRandomArticle()">Add Random Article</button>
-    <button id="sort-button">Sort</button>
-    
-    <div id="articles-container">
-        <!-- Начальные статьи могут быть пустыми -->
-    </div>
+    <ul id="menuslide">
+        <li><b><a href="javascript:void(0);">Меню 01  -></a></b>
+            <ul class="menuslide2">
+                <p class="article" id="x">Children’s books<span class="count">50</span></p>
+            </ul>
+        </li>    
+        <li><b><a href="javascript:void(0);">Меню 02 -></a></b>
+            <ul class="menuslide2">
+                <p class="article" id="x">Science-fiction<span class="count">50</span></p>
+                <p class="article" id="x">Business & Finance<span class="count">25</span></p>
+                <p class="article" id="x">Politics<span class="count">12</span></p>
+            </ul>
+        </li>
+        <li><b><a href="javascript:void(0);">Меню 03 -></a></b>
 
-    <select id="num"></select>
+            <ul class="menuslide2">
+                <p class="article" id="x">History <span class="count">47</span></p>
+                <p class="article" id="x">Horror <span class="count">9</span></p>
+                <p class="article" id="x">Romance <span class="count">111</span></p>
+            </ul>
+        </li>
+        <li><b><a href="javascript:void(0);">Меню 04  -></a></b>
+            <ul class="menuslide2">
+                <p class="article" id="x">Religious<span class="count">50</span></p>
+            </ul>
+        </li>
+    </ul>
+    
+    <script src="/Lessons_DOM/new.js"></script>
+    
+    
 </body>
 </html>
